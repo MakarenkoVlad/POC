@@ -2,11 +2,11 @@ package com.example.poc.v1
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.*
-import com.example.poc.Colors
-import com.example.poc.brand.Brand
-import com.example.poc.brand.brand1DarkColors
-import com.example.poc.brand.brand1LightColors
-import com.example.poc.brand.brand2Colors
+import androidx.compose.ui.graphics.Color
+import com.example.poc.Brand
+import com.example.poc.brand1DarkColors
+import com.example.poc.brand1LightColors
+import com.example.poc.brand2Colors
 
 internal val LocalColors = staticCompositionLocalOf { brand1DarkColors }
 
@@ -39,11 +39,27 @@ enum class IsDarkThemeType {
         get
 }
 
-object Theme {
-    val colors: Colors
-        @ReadOnlyComposable
-        @Composable
-        get() = LocalColors.current
+interface ColorTokens {
+
+    val color: Color
+
+    companion object {
+
+        private fun getColorToken(color: Color) = object : ColorTokens {
+            override val color: Color
+                get() = color
+        }
+
+        val BUTTON: ColorTokens
+            @Composable
+            @ReadOnlyComposable
+            get() = getColorToken(LocalColors.current.button)
+
+        val TEXT: ColorTokens
+            @Composable
+            @ReadOnlyComposable
+            get() = getColorToken(LocalColors.current.text)
+    }
 }
 
 @Composable

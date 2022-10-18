@@ -12,11 +12,12 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.poc.brand.Brand
+import com.example.poc.v1.ColorTokens
 import com.example.poc.v1.IsDarkThemeType
 import com.example.poc.v1.Theme
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -36,7 +37,10 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     Column(Modifier.fillMaxSize()) {
-                        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+                        Row(
+                            Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.spacedBy(16.dp)
+                        ) {
                             Button(
                                 text = "System",
                                 onClick = { isDarkThemeType = IsDarkThemeType.SYSTEM },
@@ -61,7 +65,10 @@ class MainActivity : ComponentActivity() {
 
                         Spacer(modifier = Modifier.height(16.dp))
 
-                        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+                        Row(
+                            Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.spacedBy(16.dp)
+                        ) {
                             Button(
                                 text = "Brand1",
                                 onClick = { brand = Brand.BRAND1 },
@@ -87,18 +94,18 @@ class MainActivity : ComponentActivity() {
 fun Button(text: String, onClick: () -> Unit, isSelected: Boolean, modifier: Modifier) {
     Button(
         onClick = onClick,
-        colors = ButtonDefaults.buttonColors(containerColor = Theme.colors.button),
+        colors = ButtonDefaults.buttonColors(containerColor = ColorTokens.BUTTON.color),
         modifier = modifier.height(50.dp)
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
 
             AnimatedVisibility(visible = isSelected) {
-                Icon(Icons.Default.Check, contentDescription = null, tint = Theme.colors.text)
+                Icon(Icons.Default.Check, contentDescription = null, tint = ColorTokens.TEXT.color)
             }
 
             Spacer(modifier = Modifier.width(8.dp))
 
-            Text(text = text, color = Theme.colors.text)
+            Text(text = text, color = ColorTokens.TEXT.color)
         }
     }
 }

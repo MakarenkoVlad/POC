@@ -2,15 +2,26 @@ package com.example.poc
 
 import androidx.compose.ui.graphics.Color
 
-interface Colors {
-    val button: Color
+data class Colors(
+    val button: Color,
     val text: Color
+)
+
+enum class Brand {
+    BRAND1, BRAND2;
 }
 
-data class DataColors(
-    override val button: Color,
-    override val text: Color
-) : Colors
+val brand1LightColors = Colors(
+    Color.LightGray,
+    Color.Green
+)
 
+val brand1DarkColors = Colors(
+    Color.Gray,
+    Color.White
+)
 
-
+val brand2Colors = Colors(
+    Color.Cyan,
+    Color.White
+)
