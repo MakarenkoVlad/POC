@@ -39,6 +39,7 @@ enum class IsDarkThemeType {
         get
 }
 
+// V1
 interface ColorTokens {
 
     val color: Color
@@ -55,6 +56,29 @@ val ColorTokens.Companion.TEXT: ColorTokens
     @Composable
     @ReadOnlyComposable
     get() = LocalColors.current.text
+
+//
+
+//V2
+
+interface ColorTokens2 {
+
+    val color: Color
+
+    companion object {
+        val BUTTON: ColorTokens
+            @Composable
+            @ReadOnlyComposable
+            get() = LocalColors.current.button
+
+        val TEXT: ColorTokens
+            @Composable
+            @ReadOnlyComposable
+            get() = LocalColors.current.text
+    }
+}
+
+//
 
 @Composable
 fun Theme(isDarkThemeType: IsDarkThemeType, brand: Brand, content: @Composable () -> Unit) {
