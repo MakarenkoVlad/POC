@@ -43,24 +43,18 @@ interface ColorTokens {
 
     val color: Color
 
-    companion object {
-
-        private fun getColorToken(color: Color) = object : ColorTokens {
-            override val color: Color
-                get() = color
-        }
-
-        val BUTTON: ColorTokens
-            @Composable
-            @ReadOnlyComposable
-            get() = getColorToken(LocalColors.current.button)
-
-        val TEXT: ColorTokens
-            @Composable
-            @ReadOnlyComposable
-            get() = getColorToken(LocalColors.current.text)
-    }
+    companion object
 }
+
+val ColorTokens.Companion.BUTTON: ColorTokens
+    @Composable
+    @ReadOnlyComposable
+    get() = LocalColors.current.button
+
+val ColorTokens.Companion.TEXT: ColorTokens
+    @Composable
+    @ReadOnlyComposable
+    get() = LocalColors.current.text
 
 @Composable
 fun Theme(isDarkThemeType: IsDarkThemeType, brand: Brand, content: @Composable () -> Unit) {

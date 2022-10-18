@@ -1,10 +1,11 @@
 package com.example.poc
 
 import androidx.compose.ui.graphics.Color
+import com.example.poc.v1.ColorTokens
 
 data class Colors(
-    val button: Color,
-    val text: Color
+    val button: ColorTokens,
+    val text: ColorTokens
 )
 
 enum class Brand {
@@ -12,16 +13,21 @@ enum class Brand {
 }
 
 val brand1LightColors = Colors(
-    Color.LightGray,
-    Color.Green
+    Color.LightGray.asColorToken(),
+    Color.Green.asColorToken()
 )
 
 val brand1DarkColors = Colors(
-    Color.Gray,
-    Color.White
+    Color.Gray.asColorToken(),
+    Color.White.asColorToken()
 )
 
 val brand2Colors = Colors(
-    Color.Cyan,
-    Color.White
+    Color.Cyan.asColorToken(),
+    Color.White.asColorToken()
 )
+
+private fun Color.asColorToken() = object : ColorTokens {
+    override val color: Color
+        get() = this@asColorToken
+}
