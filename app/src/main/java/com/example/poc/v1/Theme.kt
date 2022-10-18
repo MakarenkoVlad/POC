@@ -59,7 +59,7 @@ val ColorTokens.Companion.TEXT: ColorTokens
 
 //
 
-//V2
+//V2 // does not break imports
 
 interface ColorTokens2 {
 
